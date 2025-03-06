@@ -1,24 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+`bundle install`
+`rails server`
 
-Things you may want to cover:
+## Rails Helpers
 
-* Ruby version
+Create a new Controller, View file, and Route entry with the generate command (ex: `rails generate controller home index`)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Home page is often handled as a unique case where the routes.rb file is updated to point the base URL to the home page

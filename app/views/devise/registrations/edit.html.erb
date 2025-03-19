@@ -3,48 +3,48 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <div class="d-flex flex-column gap-4">
     <%= render "devise/shared/error_messages", resource: resource %>
+
+    <!-- Current Password (Required for both updating & deleting) -->
     <div class="field form-group">
       <%= f.label :current_password %> <i>*</i><br />
-      <%= f.password_field :current_password, class:"form-control", autocomplete: "current-password" %>
+      <%= f.password_field :current_password, class: "form-control", autocomplete: "current-password", required: true %>
     </div>
 
+    <!-- Email Update -->
     <div class="field form-group">
       <%= f.label :email %><br />
-      <%= f.email_field :email, class:"form-control", autofocus: true, autocomplete: "email" %>
+      <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
 
+    <!-- Password Update -->
     <div class="d-flex flex-column gap-4">
-      <div class="field form-group">          
+      <div class="field form-group">
         <%= f.label :password %><br />
-        <%= f.password_field :password, class:"form-control", autocomplete: "new-password" %>
+        <%= f.password_field :password, class: "form-control", autocomplete: "new-password" %>
         <% if @minimum_password_length %>
-
           <em><%= @minimum_password_length %> characters minimum</em>
         <% end %>
       </div>
 
       <div class="field form-group">
         <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password" %>
+        <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
       </div>
     </div>
 
-    <div class="actions">
-      <%= f.submit "Update", class:"btn btn-primary" %>
+    <!-- Buttons: Update Profile & Delete Account -->
+    <div class="d-flex justify-content-between mt-4">
+      <%= f.submit "Update Profile", class: "btn btn-primary" %>
+
+      <%= button_to "Cancel My Account", registration_path(resource_name),
+          method: :delete, class: "btn btn-danger",
+          data: { confirm: "Are you sure? This cannot be undone." } %>
     </div>
   </div>
 <% end %>
-
-<div class="card my-5">
-  <div class="card-body">
-  <h2>Dangerzone</h2>
-
-   <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class:"btn btn-danger" %>
-  </div>
-</div>
 
 <%= link_to "Back", :back %>

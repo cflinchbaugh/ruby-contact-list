@@ -25,9 +25,11 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, notice: "Contact was successfully created." }
+        flash[:success] = "Contact was successfully created."
+        format.html { redirect_to @contact }
         format.json { render :show, status: :created, location: @contact }
       else
+        flash[:error] = "There was an issue creating the contact."
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
@@ -38,9 +40,11 @@ class ContactsController < ApplicationController
   def update
     respond_to do |format|
       if @contact.update(contact_params)
-        format.html { redirect_to @contact, notice: "Contact was successfully updated." }
+        flash[:success] = "Contact was successfully updated."
+        format.html { redirect_to @contact }
         format.json { render :show, status: :ok, location: @contact }
       else
+        flash[:error] = "There was an issue updating the contact."
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
@@ -49,22 +53,30 @@ class ContactsController < ApplicationController
 
   # DELETE /contacts/1 or /contacts/1.json
   def destroy
-    @contact.destroy!
+    if @contact.destroy
+      flash[:alert] = "Contact was successfully deleted."
+    else
+      flash[:error] = "There was an issue deleting the contact."
+    end
 
     respond_to do |format|
-      format.html { redirect_to contacts_path, status: :see_other, notice: "Contact was successfully destroyed." }
+      format.html { redirect_to contacts_path, status: :see_other }
       format.json { head :no_content }
     end
+  rescue StandardError => e
+    flash[:error] = "Error deleting contact: #{e.message}"
+    redirect_to contacts_path, status: :see_other
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
-      @contact = Contact.find(params.expect(:id))
+      @contact = Contact.find(params.require(:id)) # Fixed incorrect params.expect(:id)
     end
 
     # Only allow a list of trusted parameters through.
     def contact_params
-      params.expect(contact: [ :first_name, :last_name, :email, :phone ])
+      params.require(:contact).permit(:first_name, :last_name, :email, :phone) # Fixed incorrect params.expect(contact: [...])
     end
 end

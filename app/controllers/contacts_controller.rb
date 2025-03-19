@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!  # Require authentication for all actions
+  before_action :set_contact, only: %i[show edit update destroy]
 
   # GET /contacts or /contacts.json
   def index
@@ -72,11 +73,11 @@ class ContactsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
-      @contact = Contact.find(params.require(:id)) # Fixed incorrect params.expect(:id)
+      @contact = Contact.find(params.require(:id))
     end
 
     # Only allow a list of trusted parameters through.
     def contact_params
-      params.require(:contact).permit(:first_name, :last_name, :email, :phone) # Fixed incorrect params.expect(contact: [...])
+      params.require(:contact).permit(:first_name, :last_name, :email, :phone)
     end
 end

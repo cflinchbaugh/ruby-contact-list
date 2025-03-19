@@ -2,9 +2,7 @@ require "test_helper"
 
 class HomeControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = User.find_or_create_by!(email: "user1@example.com") do |user|
-      user.password = "password"
-    end
+    @user = users(:one)
   end
 
 

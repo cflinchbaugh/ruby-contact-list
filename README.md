@@ -25,3 +25,5 @@ Generator function will create the migration, but you must run it to get the sch
 
 Testing: `rails test && rails test:system`
 Linting: `bin/rubocop`
+
+Branch protection implemented, please open a PULL REQUEST for review

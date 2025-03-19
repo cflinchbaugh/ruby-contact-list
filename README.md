@@ -33,3 +33,7 @@ After install Devise, follow the official docs to configure and then generate re
 ## Misc
 
 When installing a new gem, be sure to run `bundle add <gem>` not `gem install <gem>` or it will not automatically be added to the Gemfile.
+
+Testing: `rails test && rails test:system`
+Linting: `bin/rubocop`
+Linting Autocorrect: `rubocop -a`

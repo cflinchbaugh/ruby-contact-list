@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
-  resources :contacts
-  # get "home/index"
-  root "home#index"
+  devise_for :users
+
+    # Restrict access to logged-in users only
+    # authenticate :user do
+    resources :contacts
+  # end
+
+  # Public routes
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root "home#index"
   get "home/about"
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

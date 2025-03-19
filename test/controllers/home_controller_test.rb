@@ -1,8 +1,13 @@
 require "test_helper"
 
 class HomeControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @user = users(:one)
+  end
+
+
   test "should get index" do
-    get root_url  # root is mapped to home#index
+    get root_url
     assert_response :success
   end
 

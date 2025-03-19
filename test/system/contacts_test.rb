@@ -2,7 +2,10 @@ require "application_system_test_case"
 
 class ContactsTest < ApplicationSystemTestCase
   setup do
-    @contact = contacts(:one)
+    @user = users(:one)
+    sign_in @user
+
+    @contact = contacts(:two)
   end
 
   test "visiting the index" do
@@ -26,7 +29,11 @@ class ContactsTest < ApplicationSystemTestCase
 
   test "should update Contact" do
     visit contact_url(@contact)
-    click_on "Edit", match: :first
+
+    #  Target the Edit link rather than the "Edit Profile" in navbar
+    find("[data-contact-id='#{@contact.id}'] a", text: "Edit").click
+
+    puts "Current Contact: #{@contact.inspect}"
 
     fill_in "Email", with: @contact.email
     fill_in "First name", with: @contact.first_name

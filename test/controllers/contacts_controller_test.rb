@@ -2,7 +2,10 @@ require "test_helper"
 
 class ContactsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @contact = contacts(:one)
+    @user = users(:one)
+    sign_in @user
+
+    @contact = contacts(:two)
   end
 
   test "should get index" do
@@ -17,7 +20,14 @@ class ContactsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create contact" do
     assert_difference("Contact.count") do
-      post contacts_url, params: { contact: { email: @contact.email, first_name: @contact.first_name, last_name: @contact.last_name, phone: @contact.phone } }
+      post contacts_url, params: {
+        contact: {
+          email: @contact.email,
+          first_name: @contact.first_name,
+          last_name: @contact.last_name,
+          phone: @contact.phone
+        }
+      }
     end
 
     assert_redirected_to contact_url(Contact.last)

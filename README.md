@@ -23,5 +23,5 @@ Generator function will create the migration, but you must run it to get the sch
 
 ## Misc
 
-Testing: `rails test`
+Testing: `rails test && rails test:system`
 Linting: `bin/rubocop`

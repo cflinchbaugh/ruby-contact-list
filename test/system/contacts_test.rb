@@ -12,7 +12,7 @@ class ContactsTest < ApplicationSystemTestCase
 
   test "should create contact" do
     visit contacts_url
-    click_on "New contact"
+    click_on "Add New Contact"
 
     fill_in "Email", with: @contact.email
     fill_in "First name", with: @contact.first_name
@@ -26,7 +26,7 @@ class ContactsTest < ApplicationSystemTestCase
 
   test "should update Contact" do
     visit contact_url(@contact)
-    click_on "Edit this contact", match: :first
+    click_on "Edit", match: :first
 
     fill_in "Email", with: @contact.email
     fill_in "First name", with: @contact.first_name
@@ -40,8 +40,8 @@ class ContactsTest < ApplicationSystemTestCase
 
   test "should destroy Contact" do
     visit contact_url(@contact)
-    click_on "Destroy this contact", match: :first
+    click_on "Delete", match: :first
 
-    assert_text "Contact was successfully destroyed"
+    assert_text "Contact was successfully deleted"
   end
 end

@@ -25,7 +25,8 @@ class ContactsControllerTest < ActionDispatch::IntegrationTest
           email: @contact.email,
           first_name: @contact.first_name,
           last_name: @contact.last_name,
-          phone: @contact.phone
+          phone: @contact.phone,
+          user_id: @user.id,
         }
       }
     end
@@ -44,7 +45,16 @@ class ContactsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update contact" do
-    patch contact_url(@contact), params: { contact: { email: @contact.email, first_name: @contact.first_name, last_name: @contact.last_name, phone: @contact.phone } }
+    patch contact_url(@contact), 
+    params: { 
+      contact: { 
+        email: @contact.email,
+        first_name: @contact.first_name,
+        last_name: @contact.last_name,
+        phone: @contact.phone,
+        user_id: @user.id,
+      }
+    }
     assert_redirected_to contact_url(@contact)
   end
 

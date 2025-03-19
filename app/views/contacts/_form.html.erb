@@ -30,7 +30,10 @@
     <div class="field form-group">
       <%= form.label :phone, class:"form-label" %>
       <%= form.text_field :phone, class:"form-control" %>
-    </div>
+    </div>    
+    
+    # Association Requirement
+    <%= form.number_field :user_id, id: :contact_user_id, class:"form-control", value: current_user.id, type: :hidden %>
   </div>
 
   <%= form.submit class:"btn btn-primary" %>

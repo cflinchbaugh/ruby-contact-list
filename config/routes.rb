@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  # Restrict access to logged-in users only
-  # authenticate :user do
+    # Restrict access to logged-in users only
+    # authenticate :user do
     resources :contacts
   # end
 

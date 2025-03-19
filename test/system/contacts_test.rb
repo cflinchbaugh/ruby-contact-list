@@ -29,7 +29,7 @@ class ContactsTest < ApplicationSystemTestCase
 
   test "should update Contact" do
     visit contact_url(@contact)
-    
+
     #  Target the Edit link rather than the "Edit Profile" in navbar
     find("[data-contact-id='#{@contact.id}'] a", text: "Edit").click
 

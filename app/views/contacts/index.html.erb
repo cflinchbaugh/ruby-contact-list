@@ -5,22 +5,18 @@
 <table class="table table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
+      <th>Name</th>
       <th>Email</th>
       <th>Phone</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @contacts.each do |contact| %>
       <tr>
-        <td><%= contact.first_name %></td>
-        <td><%= contact.last_name %></td>
+        <td><%= link_to contact.last_name + ", " + contact.first_name, contact %></td>
         <td><%= contact.email %></td>
         <td><%= contact.phone %></td>
-        <td><%= link_to "Show", contact %></td>
     <% end %>
   </tbody>
 </table>

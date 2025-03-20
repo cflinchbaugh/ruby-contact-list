@@ -1,6 +1,8 @@
 class ContactsController < ApplicationController
   before_action :authenticate_user!  # Require authentication for all actions
   before_action :set_contact, only: %i[show edit update destroy]
+  before_action :correct_user, only: [ :edit, :update, :destroy ]
+
 
   # GET /contacts or /contacts.json
   def index
@@ -13,7 +15,8 @@ class ContactsController < ApplicationController
 
   # GET /contacts/new
   def new
-    @contact = Contact.new
+    # @contact = Contact.new
+    @contact = current_user.contacts.build
   end
 
   # GET /contacts/1/edit
@@ -22,7 +25,8 @@ class ContactsController < ApplicationController
 
   # POST /contacts or /contacts.json
   def create
-    @contact = Contact.new(contact_params)
+    # @contact = Contact.new(contact_params)
+    @contact = current_user.contacts.build(contact_params)
 
     respond_to do |format|
       if @contact.save
@@ -69,6 +73,12 @@ class ContactsController < ApplicationController
     redirect_to contacts_path, status: :see_other
   end
 
+  def correct_user
+    @contact = current_user.contacts.find_by(id: params[:id])
+
+    redirect_to contacts_path, notice: "Not authorized" if @contact.nil?
+  end
+
   private
 
     # Use callbacks to share common setup or constraints between actions.
@@ -78,6 +88,6 @@ class ContactsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def contact_params
-      params.require(:contact).permit(:first_name, :last_name, :email, :phone)
+      params.require(:contact).permit(:first_name, :last_name, :email, :phone, :user_id)
     end
 end

@@ -3,9 +3,11 @@ one:
   last_name: Doe
   email: john.doe@example.com
   phone: "123-456-7890"
+  user: one
 
 two:
   first_name: Jane
   last_name: Doe
   email: jane.doe@example.com
   phone: "987-654-3210"
+  user: one

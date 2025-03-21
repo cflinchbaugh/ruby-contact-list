@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
   before_action :authenticate_user!  # Require authentication for all actions
   before_action :set_contact, only: %i[show edit update destroy]
-  before_action :correct_user, only: [ :edit, :update, :destroy ]
+  # before_action :correct_user, only: [ :edit, :update, :destroy ]
 
 
   # GET /contacts or /contacts.json
@@ -89,6 +89,6 @@ class ContactsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def contact_params
-      params.require(:contact).permit(:first_name, :last_name, :email, :phone, :user_id)
+      params.require(:contact).permit(:first_name, :last_name, :email, :phone, :user_id, tag_ids: [])
     end
 end

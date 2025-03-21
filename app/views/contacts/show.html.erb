@@ -3,6 +3,9 @@
     <div class="container-fluid px-0 py-2">
       <h1 class="display-5 fw-bold"><%= @contact.first_name %> <%= @contact.last_name %></h1>
       <p class="lead"><%= @contact.email %> | <%= @contact.phone %></p>
+      <p><strong>Tags:</strong>
+        <%= @contact.tags.map(&:name).join(", ") %>
+      </p>
     </div>
 
     <% if current_user.id === @contact.user_id %>

@@ -1,11 +1,13 @@
 # README
 
-`bundle install`
-`rails server`
+```
+bundle install
+rails server
+```
 
 ## Description
 
-A Contact List application which includes Authentication, Create Read Update Delete (CRUD) functionality, with Bootstrap styling.
+A Contact List application which includes Authentication, Create Read Update Delete (CRUD) functionality, pagination, and styled with Bootstrap.
 
 ## Page Creation
 
@@ -34,8 +36,8 @@ After install Devise, follow the official docs to configure and then generate re
 
 Models can be updated to include associations such as `belongs_to` or `has_many` (among others) by manually adding the association to the model itself, then by running terminal commands to generate the appropriate migrations.
 
-`rails g migration add_user_id_to_contacts user_id:integer:index` (the index improves lookup speed)
-`rails db:migrate`
+- `rails g migration add_user_id_to_contacts user_id:integer:index` (the index improves lookup speed)
+- `rails db:migrate`
 
 After migrating, ensuring the new association is properly handled by existing data will be required. For this project, the DB was wiped but in production updating existing records with a migration would have been necessary. In either case, controllers must be updated to include the parameter support passed along, in this case adding a contact was updated to pass along the active user id as a hidden field and the contact params were updated to include `:user_id`.
 
@@ -43,12 +45,16 @@ Finally, the assocation was added to the creation process of a Contact by replac
 
 UX updates can then be implemented to only show UI elements which a user may access, but the data assocations and authorization checks ensure security from bad actors who circumvent the UI.
 
+## Pagination
+
+[Kaminari](https://github.com/kaminari/kaminari) has been implemented for pagination
+
 ## Misc
 
 When installing a new gem, be sure to run `bundle add <gem>` not `gem install <gem>` or it will not automatically be added to the Gemfile.
 
-Linting: `bin/rubocop`
-Linting Autocorrect: `rubocop -a`
-Reset Database: `rails db:drop db:create db:migrate db:seed`
-Routes: `rails routes`
-Testing: `rails test && rails test:system`
+- Linting: `bin/rubocop`
+- Linting Autocorrect: `rubocop -a`
+- Reset Database: `rails db:drop db:create db:migrate db:seed`
+- Routes: `rails routes`
+- Testing: `rails test && rails test:system`

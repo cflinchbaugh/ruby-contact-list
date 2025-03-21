@@ -1,28 +1,35 @@
 <% content_for :title, "Contacts" %>
 
-<h1>Contacts</h1>
+<div class="d-flex flex-column gap-4">
 
-<table class="table table-bordered table-hover">
-  <thead class="thead-dark">
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Mine</th>
-    </tr>
-  </thead>
+  <h1>Contacts</h1>
 
-  <tbody>
-    <% @contacts.each do |contact| %>
+  <div class="text-end">
+    <%= link_to "Add New Contact", new_contact_path, class:"btn btn-primary"%>
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
       <tr>
-        <td><%= link_to contact.last_name + ", " + contact.first_name, contact %></td>
-        <td><%= contact.email %></td>
-        <td><%= contact.phone %></td>
-        <td><% if current_user.id === contact.user_id %> X <% else %> - <% end %></td>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Mine</th>
+      </tr>
+    </thead>
 
-    <% end %>
-  </tbody>
-</table>
+    <tbody>
+      <% @contacts.each do |contact| %>
+        <tr>
+          <td><%= link_to contact.last_name + ", " + contact.first_name, contact %></td>
+          <td><%= contact.email %></td>
+          <td><%= contact.phone %></td>
+          <td><% if current_user.id === contact.user_id %> X <% else %> - <% end %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="mx-auto">
+    <%= paginate @contacts, window: 1%>
+  </div>
 </div>
-
-<%= link_to "Add New Contact", new_contact_path, class:"btn btn-primary"%>

@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
   def index
     @page_size = 5
     @contacts = current_user.contacts.page(params[:page]).per(@page_size)
-  end  
+  end
 
   # GET /contacts/1 or /contacts/1.json
   def show

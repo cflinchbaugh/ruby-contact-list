@@ -49,6 +49,10 @@ UX updates can then be implemented to only show UI elements which a user may acc
 
 ### Tags and Contacts (Many to Many)
 
+Adding support for a Tag model for Contacts requires a join table and updating the models (including the join model) to include the appropriate associations. Seeding data and updating the UI ensures the end user can see the tags where appropriate, and updating the Contacts controller to permit the new tag_ids attribute.
+
+Because a Contact may have a Tag association, it is important to include the `dependent: :destroy` ability to ensure deleting a Contact also deletes the join recrod to avoid foreign key violations.
+
 ## Pagination
 
 [Kaminari](https://github.com/kaminari/kaminari) has been implemented for pagination

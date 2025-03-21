@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class="pb-4">
+  <div class="d-flex flex-column gap-4 pb-4">
     <div class="field form-group">
       <%= form.label :first_name, class:"form-label"  %>
       <%= form.text_field :first_name, class:"form-control" %>
@@ -32,17 +32,18 @@
       <%= form.text_field :phone, class:"form-control" %>
     </div>    
 
-    <div class="mb-3">
-    <strong>Categories</strong><br>
+    <div>
+    <strong>Categories</strong>
+    <br>
     <% Tag.all.each do |tag| %>
       <div class="form-check">
         <%= check_box_tag "contact[tag_ids][]", tag.id, @contact.tags.include?(tag), class: "form-check-input", id: "tag_#{tag.id}" %>
         <%= label_tag "tag_#{tag.id}", tag.name, class: "form-check-label" %>
       </div>
     <% end %>
+    </div>
   </div>
     
-    # Association Requirement
     <%= form.number_field :user_id, id: :contact_user_id, class:"form-control", value: current_user.id, type: :hidden %>
   </div>
 

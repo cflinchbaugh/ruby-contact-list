@@ -9,6 +9,6 @@
 #   end
 
 # Tags
-["Family", "Friend", "Work"].each do |name|
+[ "Family", "Friend", "Work" ].each do |name|
   Tag.find_or_create_by(name: name)
 end

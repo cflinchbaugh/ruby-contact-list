@@ -47,7 +47,8 @@ UX updates can then be implemented to only show UI elements which a user may acc
 
 When installing a new gem, be sure to run `bundle add <gem>` not `gem install <gem>` or it will not automatically be added to the Gemfile.
 
-Testing: `rails test && rails test:system`
 Linting: `bin/rubocop`
 Linting Autocorrect: `rubocop -a`
 Reset Database: `rails db:drop db:create db:migrate db:seed`
+Routes: `rails routes`
+Testing: `rails test && rails test:system`

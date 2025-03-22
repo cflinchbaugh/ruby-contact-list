@@ -1,6 +1,6 @@
-require 'simplecov'
-SimpleCov.start 'rails' do
-  add_filter '/test/' # or '/spec/' for RSpec
+require "simplecov"
+SimpleCov.start "rails" do
+  add_filter "/test/" # or '/spec/' for RSpec
 end
 
 

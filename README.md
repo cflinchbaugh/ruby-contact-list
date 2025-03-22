@@ -34,6 +34,8 @@ After install Devise, follow the official docs to configure and then generate re
 
 ## Model Association
 
+### Contacts and Users (Many to One)
+
 Models can be updated to include associations such as `belongs_to` or `has_many` (among others) by manually adding the association to the model itself, then by running terminal commands to generate the appropriate migrations.
 
 - `rails g migration add_user_id_to_contacts user_id:integer:index` (the index improves lookup speed)
@@ -44,6 +46,12 @@ After migrating, ensuring the new association is properly handled by existing da
 Finally, the assocation was added to the creation process of a Contact by replacing Contact.new with the current_user.contacts.build calls and introducing a validation function to verify the user attempting to take an action is authorized (and redirecting them if they are not).
 
 UX updates can then be implemented to only show UI elements which a user may access, but the data assocations and authorization checks ensure security from bad actors who circumvent the UI.
+
+### Tags and Contacts (Many to Many)
+
+Adding support for a Tag model for Contacts requires a join table and updating the models (including the join model) to include the appropriate associations. Seeding data and updating the UI ensures the end user can see the tags where appropriate, and updating the Contacts controller to permit the new tag_ids attribute.
+
+Because a Contact may have a Tag association, it is important to include the `dependent: :destroy` ability to ensure deleting a Contact also deletes the join recrod to avoid foreign key violations.
 
 ## Pagination
 
@@ -58,3 +66,7 @@ When installing a new gem, be sure to run `bundle add <gem>` not `gem install <g
 - Reset Database: `rails db:drop db:create db:migrate db:seed`
 - Routes: `rails routes`
 - Testing: `rails test && rails test:system`
+
+## Special Thanks
+
+[Codemy](https://www.youtube.com/watch?v=fmyvWz5TUWg)

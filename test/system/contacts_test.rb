@@ -48,9 +48,19 @@ class ContactsTest < ApplicationSystemTestCase
     fill_in "First name", with: @contact.first_name
     fill_in "Last name", with: @contact.last_name
     fill_in "Phone", with: @contact.phone
+
+    # Check tags checkbox(es)
+    check "tagA"
+    check "tagB"
+    check "tagC"
+
     click_on "Update Contact"
 
     assert_text "Contact was successfully updated"
+    assert_text "tagA"
+    assert_text "tagB"
+    assert_text "tagC"
+
     click_on "Back"
   end
 

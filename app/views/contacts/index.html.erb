@@ -7,6 +7,33 @@
   <div class="text-end">
     <%= link_to "Add New Contact", new_contact_path, class:"btn btn-primary"%>
   </div>
+
+  <%= form_with url: contacts_path, method: :get, local: true, class: "mb-4" do %>
+    <div class="row g-2">
+      <div class="col-md-4">
+        <%= label_tag :search, "Search by name" %>
+        <%= text_field_tag :search, params[:search], class: "form-control" %>
+      </div>
+  
+      <div class="col-md-6">
+        <%= label_tag :tag_ids, "Filter by tags" %><br>
+        <% @tags.each do |tag| %>
+          <div class="form-check form-check-inline">
+            <%= check_box_tag "tag_ids[]", tag.id, params[:tag_ids]&.include?(tag.id.to_s), id: "tag_#{tag.id}", class: "form-check-input" %>
+            <%= label_tag "tag_#{tag.id}", tag.name, class: "form-check-label" %>
+          </div>
+        <% end %>
+      </div>
+  
+      <div class="col-md-2 align-self-end">
+        <%= submit_tag "Apply", class: "btn btn-primary w-100" %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= link_to "Clear Filters", contacts_path, class: "btn btn-secondary mt-2" if params[:search].present? || params[:tag_ids].present? %>
+
+
   <table class="table table-bordered table-hover">
     <thead class="thead-dark">
       <tr>

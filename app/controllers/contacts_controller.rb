@@ -7,8 +7,24 @@ class ContactsController < ApplicationController
   # GET /contacts or /contacts.json
   def index
     @page_size = 5
-    @contacts = current_user.contacts.page(params[:page]).per(@page_size)
+    @tags = Tag.all
+  
+    @contacts = current_user.contacts
+  
+    # Search by name
+    if params[:search].present?
+      query = "%#{params[:search]}%"
+      @contacts = @contacts.where("first_name LIKE ? OR last_name LIKE ?", query, query)
+    end
+  
+    # Filter by tag
+    if params[:tag_ids].present?
+      @contacts = @contacts.joins(:tags).where(tags: { id: params[:tag_ids] }).distinct
+    end
+  
+    @contacts = @contacts.page(params[:page]).per(@page_size)
   end
+  
 
   # GET /contacts/1 or /contacts/1.json
   def show

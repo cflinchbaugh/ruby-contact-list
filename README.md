@@ -57,6 +57,10 @@ Because a Contact may have a Tag association, it is important to include the `de
 
 [Kaminari](https://github.com/kaminari/kaminari) has been implemented for pagination
 
+## Testing
+
+Test coverage is less important than test quality, however, coverage is still a valuable tool. [simplecov](https://github.com/simplecov-ruby/simplecov) is being used to generate reports each time `rails test` is run, view the latest report with the command `open coverage/index.html`
+
 ## Misc
 
 When installing a new gem, be sure to run `bundle add <gem>` not `gem install <gem>` or it will not automatically be added to the Gemfile.

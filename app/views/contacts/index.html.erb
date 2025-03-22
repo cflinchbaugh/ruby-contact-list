@@ -4,30 +4,67 @@
 
   <h1>Contacts</h1>
 
-  <div class="text-end">
-    <%= link_to "Add New Contact", new_contact_path, class:"btn btn-primary"%>
-  </div>
-  <table class="table table-bordered table-hover">
-    <thead class="thead-dark">
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Mine</th>
-      </tr>
-    </thead>
+  <%= form_with url: contacts_path, method: :get, local: true do %>
+    <div class="row g-2 align-items-start justify-content-between">
+      <!-- Filters and search (left side) -->
+      <div class="col-md-6">
+        <div class="mb-2 input-group">
+          <%= label_tag :search, "Search by name", class: "visually-hidden" %>
+          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search" %>
+          <%= submit_tag "Apply", class: "btn btn-outline-primary" %>
+        </div>
 
-    <tbody>
-      <% @contacts.each do |contact| %>
+        <div class="mb-2">
+          <fieldset>
+            <legend class="visually-hidden">
+              Tag Filters
+            </legend>
+            <% @tags.each do |tag| %>
+              <div class="form-check form-check-inline">
+                <%= check_box_tag "tag_ids[]", tag.id, params[:tag_ids]&.include?(tag.id.to_s), id: "tag_#{tag.id}", class: "form-check-input" %>
+                <%= label_tag "tag_#{tag.id}", tag.name, class: "form-check-label" %>
+              </div>
+            <% end %>
+          </fieldset>
+        </div>
+
+        <div class="mb-2 d-flex gap-2">
+          <% if params[:search].present? || params[:tag_ids].present? %>
+            <%= link_to "Clear Filters", contacts_path, class: "btn btn-outline-secondary btn-sm" %>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Right side button aligned to top -->
+      <div class="col-md-4 text-md-end">
+        <%= link_to "Add New Contact", new_contact_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
         <tr>
-          <td><%= link_to contact.last_name + ", " + contact.first_name, contact %></td>
-          <td><%= contact.email %></td>
-          <td><%= contact.phone %></td>
-          <td><% if current_user.id === contact.user_id %> X <% else %> - <% end %></td>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Mine</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @contacts.each do |contact| %>
+          <tr>
+            <td><%= link_to contact.last_name + ", " + contact.first_name, contact %></td>
+            <td><%= contact.email %></td>
+            <td><%= contact.phone %></td>
+            <td><% if current_user.id === contact.user_id %> X <% else %> - <% end %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
   <div class="mx-auto">
     <%= paginate @contacts, window: 1%>

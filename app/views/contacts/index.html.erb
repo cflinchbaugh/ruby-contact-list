@@ -15,13 +15,17 @@
         </div>
 
         <div class="mb-2">
-          <%= label_tag :tag_ids, "Filter by tags", class: "visually-hidden" %>
-          <% @tags.each do |tag| %>
-            <div class="form-check form-check-inline">
-              <%= check_box_tag "tag_ids[]", tag.id, params[:tag_ids]&.include?(tag.id.to_s), id: "tag_#{tag.id}", class: "form-check-input" %>
-              <%= label_tag "tag_#{tag.id}", tag.name, class: "form-check-label" %>
-            </div>
-          <% end %>
+          <fieldset>
+            <legend class="visually-hidden">
+              Tag Filters
+            </legend>
+            <% @tags.each do |tag| %>
+              <div class="form-check form-check-inline">
+                <%= check_box_tag "tag_ids[]", tag.id, params[:tag_ids]&.include?(tag.id.to_s), id: "tag_#{tag.id}", class: "form-check-input" %>
+                <%= label_tag "tag_#{tag.id}", tag.name, class: "form-check-label" %>
+              </div>
+            <% end %>
+          </fieldset>
         </div>
 
         <div class="mb-2 d-flex gap-2">

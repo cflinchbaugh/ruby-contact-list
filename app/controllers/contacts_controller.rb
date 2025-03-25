@@ -11,7 +11,7 @@ class ContactsController < ApplicationController
 
     # Only show users their contacts
     # @contacts = current_user.contacts
-    
+
     # Show users ALL contacts, they can only update and delete their own contacts
     @contacts = Contact.includes(:user, :tags).all  # Allow all users to see all contacts
 

@@ -9,11 +9,13 @@ class ContactsController < ApplicationController
     @page_size = 5
     @tags = Tag.all
 
-    # Only show users their contacts
-    # @contacts = current_user.contacts
-
     # Show users ALL contacts, they can only update and delete their own contacts
     @contacts = Contact.includes(:user, :tags).all  # Allow all users to see all contacts
+
+    # Show only the current user's contacts if the 'mine' checkbox is checked
+    if params[:mine].present?
+      @contacts = @contacts.where(user: current_user)
+    end
 
     # Search by name
     if params[:search].present?

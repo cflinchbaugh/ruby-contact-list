@@ -9,7 +9,11 @@ class ContactsController < ApplicationController
     @page_size = 5
     @tags = Tag.all
 
-    @contacts = current_user.contacts
+    # Only show users their contacts
+    # @contacts = current_user.contacts
+    
+    # Show users ALL contacts, they can only update and delete their own contacts
+    @contacts = Contact.includes(:user, :tags).all  # Allow all users to see all contacts
 
     # Search by name
     if params[:search].present?
@@ -105,6 +109,6 @@ class ContactsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def contact_params
-      params.require(:contact).permit(:first_name, :last_name, :email, :phone, :user_id, tag_ids: [])
+      params.require(:contact).permit(:first_name, :last_name, :email, :phone, tag_ids: [])
     end
 end

@@ -49,7 +49,7 @@
           <th>Name</th>
           <th>Email</th>
           <th>Phone</th>
-          <th>Mine</th>
+          <th>Created By</th>
         </tr>
       </thead>
 
@@ -59,7 +59,14 @@
             <td><%= link_to contact.last_name + ", " + contact.first_name, contact %></td>
             <td><%= contact.email %></td>
             <td><%= contact.phone %></td>
-            <td><% if current_user.id === contact.user_id %> X <% else %> - <% end %></td>
+            <td>
+              <% if contact.user == current_user %>
+                <strong>You</strong>
+              <% else %>
+                <%= "#{contact.user.email}" %>
+              <% end %>
+            </td>
+
           </tr>
         <% end %>
       </tbody>

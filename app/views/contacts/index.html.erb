@@ -4,14 +4,14 @@
 
   <h1>Contacts</h1>
 
-  <%= form_with url: contacts_path, method: :get, local: true do %>
+  <%= form_with url: contacts_path, method: :get, local: true, html: { id: "filters-form" } do %>
     <div class="row g-2 align-items-start justify-content-between">
       <!-- Filters and search (left side) -->
       <div class="col-md-6">
         <div class="mb-2 input-group">
           <%= label_tag :search, "Search by name", class: "visually-hidden" %>
           <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search" %>
-          <%= submit_tag "Apply", class: "btn btn-outline-primary" %>
+          <%= submit_tag "Apply", class: "btn btn-outline-primary", id: "filter-submit" %>
         </div>
 
         <div class="mb-2">
@@ -26,6 +26,11 @@
               </div>
             <% end %>
           </fieldset>
+        </div>
+
+        <div class="form-check mb-2">
+          <%= check_box_tag :mine, "1", params[:mine].present?, class: "form-check-input", id: "mine_filter" %>
+          <%= label_tag :mine, "Show only my contacts", class: "form-check-label" %>
         </div>
 
         <div class="mb-2 d-flex gap-2">
@@ -49,7 +54,7 @@
           <th>Name</th>
           <th>Email</th>
           <th>Phone</th>
-          <th>Mine</th>
+          <th>Created By</th>
         </tr>
       </thead>
 
@@ -59,7 +64,14 @@
             <td><%= link_to contact.last_name + ", " + contact.first_name, contact %></td>
             <td><%= contact.email %></td>
             <td><%= contact.phone %></td>
-            <td><% if current_user.id === contact.user_id %> X <% else %> - <% end %></td>
+            <td>
+              <% if contact.user == current_user %>
+                <strong>You</strong>
+              <% else %>
+                <%= "#{contact.user.email}" %>
+              <% end %>
+            </td>
+
           </tr>
         <% end %>
       </tbody>

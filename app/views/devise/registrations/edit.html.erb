@@ -40,13 +40,20 @@
     <div class="field form-group">
         <%= f.label :avatar %>
 
+        <!--
         <% if @user.avatar? %>
           <div class="d-flex flex-col justify-content-center" style="max-width: 200px;">
             <%= image_tag @user.avatar.url(:thumb), class: "img-fluid" %>
           </div>
         <% end %>
+         -->
           
-        <%= f.file_field :avatar, class:"form-control" %>
+        <!-- Preview new image -->
+        <div id="avatar_preview_container" style="margin-top: 10px;">
+          <img id="avatar_preview" src="#" alt="Image preview" style="display:none; max-width: 200px;"/>
+        </div>
+
+        <%= f.file_field :avatar, class: "form-control", id: "avatar_input" %>
     </div>
 
     <div class="actions">

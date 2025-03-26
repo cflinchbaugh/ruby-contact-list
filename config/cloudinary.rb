@@ -4,4 +4,6 @@
 
 require "cloudinary"
 
+return if Rails.env.test?
+
 Cloudinary.config_from_url(ENV.fetch("CLOUDINARY_URL") { raise "CLOUDINARY_URL is not set!" })

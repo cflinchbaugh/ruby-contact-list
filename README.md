@@ -57,6 +57,12 @@ Because a Contact may have a Tag association, it is important to include the `de
 
 [Kaminari](https://github.com/kaminari/kaminari) has been implemented for pagination
 
+## Image Uploading
+
+[Cloudinary](https://cloudinary.com/documentation/rails_integration) was used for file storage and requires the appropriate secrets be supplied to the .env file; for local development you can integrate with your own instance of Cloudinary or contact the admin for (potential) access.
+
+[CarrierWave](https://rubygems.org/gems/carrierwave) uploader was implemented to handle the actual uploading.
+
 ## Testing
 
 Test coverage is less important than test quality, however, coverage is still a valuable tool. [simplecov](https://github.com/simplecov-ruby/simplecov) is being used to generate reports each time `rails test` is run, view the latest report with the command `open coverage/index.html`

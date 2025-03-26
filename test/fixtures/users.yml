@@ -9,3 +9,6 @@ one:
 
 two:
   email: user2@example.com
+
+with_avatar:
+  email: userWithAvatar@example.com

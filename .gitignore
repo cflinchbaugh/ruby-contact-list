@@ -30,6 +30,7 @@
 *.swo
 .DS_Store
 .idea
+.env
 .vscode
 .byebug_history
 /log/development.log

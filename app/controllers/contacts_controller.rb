@@ -38,7 +38,6 @@ class ContactsController < ApplicationController
 
   # GET /contacts/new
   def new
-    # @contact = Contact.new
     @contact = current_user.contacts.build
   end
 

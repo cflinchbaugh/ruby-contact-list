@@ -2,6 +2,8 @@ document.addEventListener("turbo:load", () => {
   const avatarInput = document.getElementById("avatar_input");
   const avatarPreview = document.getElementById("avatar_preview");
 
+  if (!avatarInput || !avatarPreview) return; // Avoids console errors on non avatar-uploading pages
+
   avatarInput.addEventListener("change", function (event) {
     const file = event.target.files[0];
     if (file) {

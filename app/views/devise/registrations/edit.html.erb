@@ -4,61 +4,30 @@
   <div class="d-flex flex-column gap-4">
     <%= render "devise/shared/error_messages", resource: resource %>
 
-    <!-- Current Password Field -->
     <div class="field form-group">
       <%= f.label :current_password %> <i>*</i><br />
       <%= f.password_field :current_password, class:"form-control", autocomplete: "current-password" %>
     </div>
 
-    <!-- Email Field -->
     <div class="field form-group">
       <%= f.label :email %><br />
       <%= f.email_field :email, class:"form-control", autofocus: true, autocomplete: "email" %>
     </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-
-    <!-- Password and Password Confirmation -->
-    <div class="d-flex flex-column gap-4">
-      <div class="field form-group">          
-        <%= f.label :password %><br />
-        <%= f.password_field :password, class:"form-control", autocomplete: "new-password" %>
-        <% if @minimum_password_length %>
-          <em><%= @minimum_password_length %> characters minimum</em>
-        <% end %>
-      </div>
-
-      <div class="field form-group">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password" %>
-      </div>
-    </div>
-
-    <!-- Avatar Upload Field -->
     <div class="field form-group">
-        <%= f.label :avatar %>
-
-        <!--
-        <% if @user.avatar? %>
-          <div class="d-flex flex-col justify-content-center" style="max-width: 200px;">
-            <%= image_tag @user.avatar.url(:thumb), class: "img-fluid" %>
-          </div>
-        <% end %>
-         -->
-          
-        <!-- Preview new image -->
-        <div id="avatar_preview_container" class="mt-2 position-relative" style="display:none; width: 200px;">
-          <img id="avatar_preview" src="#" alt="Image preview" style="max-width: 200px;"/>
-
-          <button type="button" class="btn btn-sm btn-outline-danger position-absolute m-1 rounded-circle" style="top: 0; right: 0" id="clear_avatar">
-            X
-          </button>
-        </div>
-
-        <%= f.file_field :avatar, class: "form-control", id: "avatar_input" %>
+      <%= f.label :password %><br />
+      <%= f.password_field :password, class:"form-control", autocomplete: "new-password" %>
+      <% if @minimum_password_length %>
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
     </div>
+
+    <div class="field form-group">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password" %>
+    </div>
+
+    <%= render "layouts/image_uploader", form: f, field: :avatar %>
 
     <div class="actions">
       <%= f.submit "Update", class:"btn btn-primary" %>

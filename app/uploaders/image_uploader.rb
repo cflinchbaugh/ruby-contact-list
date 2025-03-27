@@ -1,4 +1,4 @@
-class AvatarUploader < CarrierWave::Uploader::Base
+class ImageUploader < CarrierWave::Uploader::Base
   # Tests should not interact with CarrierWave directly, it is an acceptable practice to conditionally separate Uploaders/Mailers/Loggers as done here
   if Rails.env.test?
     storage :file

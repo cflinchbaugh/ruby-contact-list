@@ -110,6 +110,13 @@ class ContactsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def contact_params
-      params.require(:contact).permit(:first_name, :last_name, :email, :phone, tag_ids: [])
+      params.require(:contact).permit(
+        :first_name,
+        :last_name,
+        :email,
+        :phone,
+        :profile_image,
+        tag_ids: []
+      )
     end
 end

@@ -41,10 +41,14 @@
           <%= label_tag "tag_#{tag.id}", tag.name, class: "form-check-label" %>
         </div>
       <% end %>
-      </div>
+    </div>
+
+    <div>
+      <%= render "layouts/image_uploader", form: form, field: :profile_image %>
+    </div>
+  
+    <div>
+      <%= form.submit class:"btn btn-primary" %>
     </div>
   </div>
-
-  <%= form.submit class:"btn btn-primary" %>
-
 <% end %>

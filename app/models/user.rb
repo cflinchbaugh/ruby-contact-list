@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   has_many :contacts
 
-  mount_uploader :avatar, AvatarUploader
+  mount_uploader :avatar, ImageUploader
 end

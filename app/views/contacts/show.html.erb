@@ -10,6 +10,16 @@
       <% end %>
     </div>
 
+    <pre>
+  Contact: <%= @contact.inspect %>
+  Profile Image: <%= @contact.profile_image %>
+  URL: <%= @contact.profile_image.url if @contact.profile_image? %>
+</pre>
+
+    <% if @contact.profile_image? %>
+      <%= image_tag @contact.profile_image.url(:thumb), class: "rounded-circle" %>
+    <% end %>
+
     <% if current_user.id === @contact.user_id %>
       <div class="d-flex flex-row gap-2">
         <%= link_to "Edit", edit_contact_path(@contact), class:"btn btn-primary" %>

@@ -45,6 +45,22 @@
     </div>
   </div>
 
+  <div class="mb-3">
+  <%= form.label :profile_image, "Profile Image" %>
+  <%= form.file_field :profile_image, id: "contact_profile_input", class: "form-control" %>
+
+  <% if @contact.profile_image? %>
+    <img id="contact_profile_preview" src="<%= @contact.profile_image.url %>" class="mt-2 img-thumbnail" style="max-height: 100px;">
+  <% else %>
+    <img id="contact_profile_preview" class="mt-2 img-thumbnail" style="max-height: 100px; display: none;">
+  <% end %>
+
+  <button type="button" id="clear_contact_profile" class="btn btn-outline-secondary btn-sm mt-2">
+    Clear
+  </button>
+</div>
+
+
   <%= form.submit class:"btn btn-primary" %>
 
 <% end %>

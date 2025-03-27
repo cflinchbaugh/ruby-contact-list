@@ -35,3 +35,32 @@ document.addEventListener("turbo:load", () => {
     clearButton.disabled = true;
   });
 });
+
+// app/javascript/contact_profile_input_preview.js
+document.addEventListener("turbo:load", () => {
+  const input = document.getElementById("contact_profile_input");
+  const preview = document.getElementById("contact_profile_preview");
+  const clearBtn = document.getElementById("clear_contact_profile");
+
+  if (!input || !preview || !clearBtn) return;
+
+  input.addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        preview.src = e.target.result;
+        preview.style.display = "block";
+      };
+      reader.readAsDataURL(file);
+    } else {
+      preview.style.display = "none";
+    }
+  });
+
+  clearBtn.addEventListener("click", () => {
+    input.value = "";
+    preview.src = "";
+    preview.style.display = "none";
+  });
+});

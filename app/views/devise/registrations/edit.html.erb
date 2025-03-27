@@ -36,29 +36,7 @@
       </div>
     </div>
 
-    <!-- Avatar Upload Field -->
-    <div class="field form-group">
-        <%= f.label :avatar %>
-
-        <!--
-        <% if @user.avatar? %>
-          <div class="d-flex flex-col justify-content-center" style="max-width: 200px;">
-            <%= image_tag @user.avatar.url(:thumb), class: "img-fluid" %>
-          </div>
-        <% end %>
-         -->
-          
-        <!-- Preview new image -->
-        <div id="avatar_preview_container" class="mt-2 position-relative" style="display:none; width: 200px;">
-          <img id="avatar_preview" src="#" alt="Image preview" style="max-width: 200px;"/>
-
-          <button type="button" class="btn btn-sm btn-outline-danger position-absolute m-1 rounded-circle" style="top: 0; right: 0" id="clear_avatar">
-            X
-          </button>
-        </div>
-
-        <%= f.file_field :avatar, class: "form-control", id: "avatar_input" %>
-    </div>
+    <%= render "layouts/image_uploader", form: f, field: :avatar %>
 
     <div class="actions">
       <%= f.submit "Update", class:"btn btn-primary" %>

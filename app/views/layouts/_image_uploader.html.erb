@@ -1,0 +1,12 @@
+<div class="field form-group">                  
+  <!-- Preview new image -->
+  <div id="image_preview_container" class="mt-2 position-relative" style="display:none; width: 200px;">
+    <img id="image_preview" src="#" alt="Image preview"  class="mt-2 img-thumbnail" style="max-height: 100px;">
+
+    <button type="button" class="btn btn-sm btn-outline-danger position-absolute m-1 rounded-circle" style="top: 0; right: 0" id="clear_image">
+      X
+    </button>
+  </div>
+
+   <%= form.file_field field, id: "image_input", class: "form-control" %>
+</div>

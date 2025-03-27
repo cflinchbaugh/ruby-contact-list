@@ -1,9 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("turbo:load", () => {
   const avatarInput = document.getElementById("avatar_input");
   const avatarPreview = document.getElementById("avatar_preview");
-  const avatarPreviewContainer = document.getElementById(
-    "avatar_preview_container"
-  );
 
   avatarInput.addEventListener("change", function (event) {
     const file = event.target.files[0];

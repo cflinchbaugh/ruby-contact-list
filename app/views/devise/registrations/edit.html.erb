@@ -4,36 +4,27 @@
   <div class="d-flex flex-column gap-4">
     <%= render "devise/shared/error_messages", resource: resource %>
 
-    <!-- Current Password Field -->
     <div class="field form-group">
       <%= f.label :current_password %> <i>*</i><br />
       <%= f.password_field :current_password, class:"form-control", autocomplete: "current-password" %>
     </div>
 
-    <!-- Email Field -->
     <div class="field form-group">
       <%= f.label :email %><br />
       <%= f.email_field :email, class:"form-control", autofocus: true, autocomplete: "email" %>
     </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
+    <div class="field form-group">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, class:"form-control", autocomplete: "new-password" %>
+      <% if @minimum_password_length %>
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
 
-    <!-- Password and Password Confirmation -->
-    <div class="d-flex flex-column gap-4">
-      <div class="field form-group">          
-        <%= f.label :password %><br />
-        <%= f.password_field :password, class:"form-control", autocomplete: "new-password" %>
-        <% if @minimum_password_length %>
-          <em><%= @minimum_password_length %> characters minimum</em>
-        <% end %>
-      </div>
-
-      <div class="field form-group">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password" %>
-      </div>
+    <div class="field form-group">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password" %>
     </div>
 
     <%= render "layouts/image_uploader", form: f, field: :avatar %>

@@ -67,6 +67,14 @@ Because a Contact may have a Tag association, it is important to include the `de
 
 Test coverage is less important than test quality, however, coverage is still a valuable tool. [simplecov](https://github.com/simplecov-ruby/simplecov) is being used to generate reports each time `rails test` is run, view the latest report with the command `open coverage/index.html`
 
+## Security
+
+Authentication is managed through Devise, which provides a robust and battle-tested system for user registration, session management, password hashing, and recovery. Sensitive attributes such as passwords are securely stored using bcrypt and never exposed directly.
+
+User-generated content (names, email, etc) is safely handled throughout the system. Rails' default behavior of escaping content in views helps prevent Cross-Site Scripting (XSS) attacks, and this has been confirmed through manual testing (e.g., script injection attempts in contact fields do not execute). At present, no use of rich text or custom HTML rendering exists, so additional sanitization steps have not been introduced, though the architecture could easily accommodate them if needed in the future.
+
+Image uploads are handled using CarrierWave, with files stored on Cloudinary. Uploaded images are restricted by file type and size using model-level validations. The application does not accept or render arbitrary file types, and uploads are not directly exposed or served from the Rails app, further mitigating risk.
+
 ## Misc
 
 When installing a new gem, be sure to run `bundle add <gem>` not `gem install <gem>` or it will not automatically be added to the Gemfile.

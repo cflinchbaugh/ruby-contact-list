@@ -70,6 +70,7 @@ gem "kaminari", "~> 1.2"
 
 gem "cloudinary"
 gem "carrierwave"
+gem "file_validators"
 gem "mini_magick" # processing images
 
 gem "dotenv-rails", groups: [ :development, :test ]

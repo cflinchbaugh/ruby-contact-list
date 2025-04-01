@@ -28,13 +28,13 @@ class HeadersTest < ApplicationSystemTestCase
     login_as(@user_without_avatar)
     visit root_path
 
-    assert_link "Sign Out"
+    assert_button "Sign Out"
   end
 
   test "shows sign in and sign up links if logged out" do
     visit root_path
 
-    assert_link "Sign In"
-    assert_link "Sign Up"
+    assert_button "Sign In"
+    assert_button "Sign Up"
   end
 end

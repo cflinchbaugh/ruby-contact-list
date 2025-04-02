@@ -1,9 +1,7 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  jti: MyString
-  exp: 2025-03-31 21:06:35
+  jti: One
+  exp: 2025-03-31 11:11:11
 
 two:
-  jti: MyString
-  exp: 2025-03-31 21:06:35
+  jti: Two
+  exp: 2025-03-31 22:22:22

@@ -1,13 +1,55 @@
-# README
+# Ruby Contact Manager
+
+A **Rails-powered contact management system** that allows users to securely create, manage, and categorize their contacts. Features include:
+
+✅ **User authentication** (Devise)  
+✅ **CRUD operations** for contacts  
+✅ **Pagination** (Kaminari)  
+✅ **Tagging system** (Many-to-Many)  
+✅ **Image uploads** (CarrierWave + Cloudinary)  
+✅ **API support** (JWT-based authentication)  
+✅ **Critical Styling** (Bootstrap)
+
+---
+
+## **Getting Started**
+
+1. Clone the repository; cd into the project directory
+2. `bundle install`
+3. `rails db:setup` # Equivalent to db:create, db:migrate, db:seed
+4. `rails server`
+5. Visit http://localhost:3000 in your browser
+
+## **Devoper Quickstart (subsequent runs)**
 
 ```
 bundle install
 rails server
 ```
 
-## Description
+## Feature Overview
 
-A Contact List application which includes Authentication, Create Read Update Delete (CRUD) functionality, pagination, and styled with Bootstrap.
+### Authentication (Devise)
+
+- Implemented with Devise for robust user management.
+- Supports registration, login, logout, and session handling.
+- API authentication is JWT-based, allowing secure tokenized access.
+
+### CRUD for Contacts
+
+- Users can create, update, delete, and search contacts.
+- Only authenticated users can manage their own contacts.
+- Tagging system implemented with a many-to-many relationship.
+
+### Pagination
+
+- Uses Kaminari for paginated contact lists.
+
+### Image Uploads
+
+- Uses CarrierWave for file handling.
+- Files are stored remotely using Cloudinary.
+- Uploaded images are restricted by file type and size to ensure security.
 
 ## Page Creation
 

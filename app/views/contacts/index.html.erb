@@ -30,7 +30,7 @@
 
         <div class="form-check mb-2">
           <%= check_box_tag :mine, "1", params[:mine].present?, class: "form-check-input", id: "mine_filter" %>
-          <%= label_tag :mine, "Show only my contacts", class: "form-check-label" %>
+          <%= label_tag :mine, "Show only my contacts", class: "form-check-label", for: "mine_filter" %>
         </div>
 
         <div class="mb-2 d-flex gap-2">

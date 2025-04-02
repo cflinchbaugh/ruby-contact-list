@@ -7,5 +7,6 @@
     </button>
   </div>
 
-   <%= form.file_field field, id: "image_input", class: "form-control" %>
+  <%= label_tag :mine, "Avatar", for: "image_input" %>
+  <%= form.file_field field, id: "image_input", class: "form-control" %>
 </div>

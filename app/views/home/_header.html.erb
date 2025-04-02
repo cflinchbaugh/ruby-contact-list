@@ -28,7 +28,7 @@
             <li class="nav-item">
               <% if current_user&.avatar? %>
                 <%= link_to edit_user_registration_path, class: "nav-link py-0" do %>
-                  <%= image_tag current_user.avatar.url(:thumb), class: "img-fluid rounded-circle", style: "max-width: 30px;" %>
+                  <%= image_tag current_user.avatar.url(:thumb), alt: "User Avatar", class: "img-fluid rounded-circle", style: "max-width: 30px;" %>
                 <% end %>
               <% else %>
                 <%= link_to current_user.email, edit_user_registration_path, class: "nav-link py-0" %>

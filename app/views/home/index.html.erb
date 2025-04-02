@@ -1,3 +1,19 @@
-<h1>Home#index</h1>
-<p>Hello world!</p>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>Welcome to Your Contact Manager!</h1>
+
+<p>Easily manage your personal and professional contacts all in one place. Our simple and powerful contact manager helps you store, search, and organize your connections effortlessly.</p>
+
+<section>
+  <span>Features:</span>
+  <ul>
+    <li>Secure, private contact storage 🔒</li>
+    <li>Tagging system for easy categorization 🏷️</li>
+    <li>Search and filter options to find contacts quickly 🔍</li>
+    <li>API support for developers 🚀</li>
+  </ul>
+</section>
+
+<% if !user_signed_in? %>
+  <div>👉 <%= link_to 'Sign Up', new_user_registration_path %> or <%= link_to 'Sign In', new_user_session_path %> to get started today!</div>
+<% else %>
+  <%= link_to 'View Contacts', contacts_path %>
+<% end %>

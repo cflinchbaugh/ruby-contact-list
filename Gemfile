@@ -74,3 +74,6 @@ gem "file_validators"
 gem "mini_magick" # processing images
 
 gem "dotenv-rails", groups: [ :development, :test ]
+
+# Token-based auth
+gem "devise-jwt"

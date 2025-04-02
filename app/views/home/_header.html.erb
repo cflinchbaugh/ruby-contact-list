@@ -36,14 +36,16 @@
             </li>
 
             <li class="nav-item">
-              <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link py-0" %>
+              
+              <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: "nav-link btn btn-link py-0", form_class: "d-inline" %>
+
             </li>
           <% else %>
             <li class="nav-item me-2">
-              <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-primary" %>
+              <%= button_to 'Sign Up', new_user_registration_path, method: :get, class: "btn btn-primary" %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Sign In', new_user_session_path, class: "btn btn-secondary" %>
+              <%= button_to 'Sign In', new_user_session_path, method: :get, class: "btn btn-secondary" %>
             </li>
           <% end %>
         </ul>

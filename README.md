@@ -113,6 +113,8 @@ Test coverage is less important than test quality, however, coverage is still a 
 
 Authentication is managed through Devise, which provides a robust and battle-tested system for user registration, session management, password hashing, and recovery. Sensitive attributes such as passwords are securely stored using bcrypt and never exposed directly.
 
+Email verification for new users has been implemented to ensure the authenticity of accounts and reduce the risk of fraudulent or malicious registrations. Upon signing up, users receive a confirmation email with a unique verification link that must be clicked before they can fully access the application.
+
 User-generated content (names, email, etc) is safely handled throughout the system. Rails' default behavior of escaping content in views helps prevent Cross-Site Scripting (XSS) attacks, and this has been confirmed through manual testing (e.g., script injection attempts in contact fields do not execute). At present, no use of rich text or custom HTML rendering exists, so additional sanitization steps have not been introduced, though the architecture could easily accommodate them if needed in the future.
 
 Image uploads are handled using CarrierWave, with files stored on Cloudinary. Uploaded images are restricted by file type and size using model-level validations. The application does not accept or render arbitrary file types, and uploads are not directly exposed or served from the Rails app, further mitigating risk.
@@ -121,6 +123,7 @@ Image uploads are handled using CarrierWave, with files stored on Cloudinary. Up
 
 When installing a new gem, be sure to run `bundle add <gem>` not `gem install <gem>` or it will not automatically be added to the Gemfile.
 
+- DB Console: `rails dbconsole`
 - Linting: `bin/rubocop`
 - Linting Autocorrect: `rubocop -a`
 - Reset Database: `rails db:drop db:create db:migrate db:seed`

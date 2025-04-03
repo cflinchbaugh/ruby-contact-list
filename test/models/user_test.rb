@@ -2,7 +2,8 @@ require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = users(:one)
+    @user = users(:one)  # This user is confirmed in the fixture
+    @unconfirmed_user = users(:unconfirmed_user)  # This user is unconfirmed in the fixture
   end
 
   test "should be valid with email and password" do
@@ -22,5 +23,10 @@ class UserTest < ActiveSupport::TestCase
     @user.password = ""
     @user.password_confirmation = ""
     assert_not @user.valid?
+  end
+
+  test "should allow login for confirmed user" do
+    sign_in @user  # Ensure the user can sign in because they are confirmed
+    assert @user.confirmed_at.present?
   end
 end

@@ -12,6 +12,7 @@
   </ul>
 </section>
 
+
 <% if !user_signed_in? %>
   <div>👉 <%= link_to 'Sign Up', new_user_registration_path %> or <%= link_to 'Sign In', new_user_session_path %> to get started today!</div>
 <% else %>

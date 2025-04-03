@@ -24,7 +24,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-light bg-gradient">
     <%= render "home/header" %>
     <main class="container py-4">
     <% if flash.any? %>
@@ -33,7 +33,9 @@
       </div>
     <% end %>
 
-      <%= yield %>
+      <div class="card p-4 shadow">
+        <%= yield %>
+      </div>
     </main>
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

@@ -55,7 +55,9 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-
+    env:
+      GMAIL_USERNAME: ${{ secrets.GMAIL_USERNAME }}
+      GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
     # services:
     #  redis:
     #    image: redis

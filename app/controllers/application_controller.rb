@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def public_page?
     # Allow multiple public pages
-    controller_name == "home" && %w[index about contact].include?(action_name)
+    controller_name == "home" && %w[index].include?(action_name)
   end
 
   # Redirect after sign-in

@@ -6,5 +6,6 @@ pin "@hotwired/stimulus", to: "stimulus.min.js"
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
 pin_all_from "app/javascript/controllers", under: "controllers"
 
+pin "edit_user_current_password_tracker"
 pin "filter_form_tracker"
 pin "image_input_preview"

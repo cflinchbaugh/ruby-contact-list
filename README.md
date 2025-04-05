@@ -119,6 +119,14 @@ User-generated content (names, email, etc) is safely handled throughout the syst
 
 Image uploads are handled using CarrierWave, with files stored on Cloudinary. Uploaded images are restricted by file type and size using model-level validations. The application does not accept or render arbitrary file types, and uploads are not directly exposed or served from the Rails app, further mitigating risk.
 
+## Deployment
+
+Deployment is configured via [Render](https://www.render.com) and can be monitored via the [Dashboard](https://dashboard.render.com/). It is configured to automatically deploy each to `main` is updated.
+
+### Deployment Limitations
+
+Render's free tier does not maintain data across spin downs or deployments, which means it will almost certainly wipe all data between uses. This project's primary intent is to demonstrate fullstack skills so this is an acceptable limitation at this time, however inconvenient it may be.
+
 ## Misc
 
 When installing a new gem, be sure to run `bundle add <gem>` not `gem install <gem>` or it will not automatically be added to the Gemfile.

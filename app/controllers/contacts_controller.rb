@@ -1,19 +1,21 @@
 class ContactsController < ApplicationController
-  before_action :authenticate_user!  # Require authentication for all actions
+  before_action :authenticate_user!
   before_action :set_contact, only: %i[show edit update destroy]
-  before_action :correct_user, only: [ :edit, :update, :destroy ]
+  before_action :correct_user, only: %i[edit update destroy]
 
-  # GET /contacts or /contacts.json
+  # GET /contacts
   def index
     @page_size = 5
     @tags = Tag.all
 
-    # Show users ALL contacts, they can only update and delete their own contacts
-    @contacts = Contact.includes(:user, :tags).all  # Allow all users to see all contacts
+    @contacts = Contact.includes(:user, :tags)
 
-    # Show only the current user's contacts if the 'mine' checkbox is checked
     if params[:mine].present?
+      # Show only the current user's contacts
       @contacts = @contacts.where(user: current_user)
+    else
+      # Show all public contacts + current user's private ones
+      @contacts = @contacts.where("is_public = ? OR user_id = ?", true, current_user.id)
     end
 
     # Search by name
@@ -30,9 +32,11 @@ class ContactsController < ApplicationController
     @contacts = @contacts.page(params[:page]).per(@page_size)
   end
 
-
-  # GET /contacts/1 or /contacts/1.json
+  # GET /contacts/1
   def show
+    unless @contact.is_public || @contact.user == current_user
+      redirect_to contacts_path, alert: "You are not authorized to view this contact."
+    end
   end
 
   # GET /contacts/new
@@ -44,9 +48,8 @@ class ContactsController < ApplicationController
   def edit
   end
 
-  # POST /contacts or /contacts.json
+  # POST /contacts
   def create
-    # @contact = Contact.new(contact_params)
     @contact = current_user.contacts.build(contact_params)
 
     respond_to do |format|
@@ -62,7 +65,7 @@ class ContactsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /contacts/1 or /contacts/1.json
+  # PATCH/PUT /contacts/1
   def update
     respond_to do |format|
       if @contact.update(contact_params)
@@ -77,7 +80,7 @@ class ContactsController < ApplicationController
     end
   end
 
-  # DELETE /contacts/1 or /contacts/1.json
+  # DELETE /contacts/1
   def destroy
     if @contact.destroy
       flash[:alert] = "Contact was successfully deleted."
@@ -96,18 +99,15 @@ class ContactsController < ApplicationController
 
   def correct_user
     @contact = current_user.contacts.find_by(id: params[:id])
-
     redirect_to contacts_path, notice: "Not authorized" if @contact.nil?
   end
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_contact
-      @contact = Contact.find(params.require(:id))
+      @contact = Contact.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def contact_params
       params.require(:contact).permit(
         :first_name,
@@ -115,6 +115,7 @@ class ContactsController < ApplicationController
         :email,
         :phone,
         :profile_image,
+        :is_public,
         tag_ids: []
       )
     end

@@ -31,7 +31,16 @@
       <%= form.label :phone, class:"form-label" %>
       <%= form.text_field :phone, class:"form-control" %>
     </div>    
-
+    
+    <div class="field form-group">
+      <%= form.check_box :is_public, class: "form-check-input" %>
+      <%= form.label :is_public, "Public" %>
+      </br>
+      <div class="p-2 mt-2 text-primary-emphasis bg-warning-subtle border border-primary-subtle rounded-3">
+        Public Contacts can be viewed by ANY user in the system
+      </div>
+    </div>
+  
     <div>
       <strong>Categories</strong>
       <br>

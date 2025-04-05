@@ -25,15 +25,17 @@
   </head>
 
   <body class="bg-light bg-gradient">
+    
     <%= render "home/header" %>
+    
     <main class="container py-4">
-    <% if flash.any? %>
-      <div class="py-2">
-      <%= render "layouts/alerts" %>
-      </div>
-    <% end %>
+      <% if flash.any? %>
+        <div class="py-2">
+        <%= render "layouts/alerts" %>
+        </div>
+      <% end %>
 
-      <div class="card p-4 shadow">
+      <div class="card p-4 shadow mx-auto" style="max-width: 1000px;">
         <%= yield %>
       </div>
     </main>
